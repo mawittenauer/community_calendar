@@ -1,0 +1,57 @@
+<%= form_with(model: admin_venue) do |form| %>
+  <% if admin_venue.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(admin_venue.errors.count, "error") %> prohibited this admin_venue from being saved:</h2>
+
+      <ul>
+        <% admin_venue.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :address1, style: "display: block" %>
+    <%= form.text_field :address1 %>
+  </div>
+
+  <div>
+    <%= form.label :address2, style: "display: block" %>
+    <%= form.text_field :address2 %>
+  </div>
+
+  <div>
+    <%= form.label :city, style: "display: block" %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div>
+    <%= form.label :state, style: "display: block" %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div>
+    <%= form.label :postal_code, style: "display: block" %>
+    <%= form.text_field :postal_code %>
+  </div>
+
+  <div>
+    <%= form.label :notes, style: "display: block" %>
+    <%= form.textarea :notes %>
+  </div>
+
+  <div>
+    <%= form.label :map_url, style: "display: block" %>
+    <%= form.text_field :map_url %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
