@@ -57,13 +57,18 @@
   </div>
 
   <div>
-    <%= form.label :category_id, style: "display: block" %>
-    <%= form.number_field :category_id %>
+    <%= form.label :category_id %><br>
+    <%= form.collection_select :category_id, Category.ordered, :id, :name %>
   </div>
 
   <div>
-    <%= form.label :venue_id, style: "display: block" %>
-    <%= form.number_field :venue_id %>
+    <%= form.label :venue_id %><br>
+    <%= form.collection_select :venue_id, Venue.order(:name), :id, :name, include_blank: true %>
+  </div>
+
+  <div>
+    <%= form.label :tag_ids, "Tags" %><br>
+    <%= form.collection_select :tag_ids, Tag.ordered, :id, :name, {}, multiple: true %>
   </div>
 
   <div>
