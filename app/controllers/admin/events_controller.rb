@@ -67,4 +67,12 @@ class Admin::EventsController < Admin::BaseController
     def admin_event_params
       params.expect(admin_event: [ :title, :description, :start_at, :end_at, :all_day, :status, :source, :external_url, :location_override, :category_id, :venue_id ])
     end
+
+    def event_params
+      params.require(:event).permit(
+        :title, :description, :start_at, :end_at, :all_day, :status,
+        :source, :external_url, :location_override, :category_id, :venue_id,
+        tag_ids: []
+      )
+    end
 end
