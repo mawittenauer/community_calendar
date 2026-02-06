@@ -7,8 +7,39 @@ class Api::V1::EventsController < Api::V1::BaseController
       return render json: { error: "start and end are required (ISO8601)" }, status: :unprocessable_entity
     end
 
-    range_start = Time.iso8601(start_param)
-    range_end   = Time.iso8601(end_param)
+    def parse_time_param(value)
+      v = value.to_s.strip
+      Rails.logger.debug "DEBUG: Parsing time param: #{v.inspect}"
+      # Try multiple parsing approaches
+      begin
+        # First try Time.parse which is more lenient
+        parsed = Time.parse(v)
+        Rails.logger.debug "DEBUG: Time.parse succeeded: #{parsed.inspect}"
+        result = parsed.in_time_zone
+        Rails.logger.debug "DEBUG: Converted to time zone: #{result.inspect}"
+        result
+      rescue ArgumentError => e
+        Rails.logger.error "DEBUG: Time.parse failed for #{v.inspect}: #{e.message}"
+        begin
+          # Fallback to DateTime.parse
+          parsed = DateTime.parse(v)
+          Rails.logger.debug "DEBUG: DateTime.parse succeeded: #{parsed.inspect}"
+          result = parsed.in_time_zone
+          Rails.logger.debug "DEBUG: DateTime converted to time zone: #{result.inspect}"
+          result
+        rescue ArgumentError => e2
+          Rails.logger.error "DEBUG: DateTime.parse also failed: #{e2.message}"
+          nil
+        end
+      end
+    end
+
+    range_start = parse_time_param(start_param)
+    range_end   = parse_time_param(end_param)
+
+    if range_start.blank? || range_end.blank?
+      return render json: { error: "Invalid start/end format. Use ISO8601." }, status: :unprocessable_entity
+    end
 
     events = Event.includes(:category, :venue, :tags)
                  .between(range_start, range_end)
