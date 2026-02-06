@@ -1,1 +1,1 @@
-json.array! @admin_categories, partial: "admin/categories/admin_category", as: :admin_category
+json.array! @categories, partial: "admin/categories/category", as: :category

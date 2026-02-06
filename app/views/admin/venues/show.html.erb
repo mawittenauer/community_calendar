@@ -1,10 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @admin_venue %>
+<%= render @venue %>
 
 <div>
-  <%= link_to "Edit this venue", edit_admin_venue_path(@admin_venue) %> |
+  <%= link_to "Edit this venue", edit_admin_venue_path(@venue) %> |
   <%= link_to "Back to venues", admin_venues_path %>
 
-  <%= button_to "Destroy this venue", @admin_venue, method: :delete %>
+  <%= button_to "Destroy this venue", admin_venue_path(@venue), method: :delete %>
 </div>

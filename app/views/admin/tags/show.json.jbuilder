@@ -1,1 +1,1 @@
-json.partial! "admin/tags/admin_tag", admin_tag: @admin_tag
+json.partial! "admin/tags/tag", tag: @tag

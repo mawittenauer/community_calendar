@@ -4,11 +4,11 @@
 
 <h1>Venues</h1>
 
-<div id="admin_venues">
-  <% @admin_venues.each do |admin_venue| %>
-    <%= render admin_venue %>
+<div id="venues">
+  <% @venues.each do |venue| %>
+    <%= render venue %>
     <p>
-      <%= link_to "Show this venue", admin_venue %>
+      <%= link_to "Show this venue", admin_venue_path(venue) %>
     </p>
   <% end %>
 </div>

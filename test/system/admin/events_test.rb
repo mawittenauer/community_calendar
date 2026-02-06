@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class Admin::EventsTest < ApplicationSystemTestCase
   setup do
-    @admin_event = admin_events(:one)
+    @event = events(:one)
   end
 
   test "visiting the index" do
@@ -14,17 +14,17 @@ class Admin::EventsTest < ApplicationSystemTestCase
     visit admin_events_url
     click_on "New event"
 
-    check "All day" if @admin_event.all_day
-    fill_in "Category", with: @admin_event.category_id
-    fill_in "Description", with: @admin_event.description
-    fill_in "End at", with: @admin_event.end_at
-    fill_in "External url", with: @admin_event.external_url
-    fill_in "Location override", with: @admin_event.location_override
-    fill_in "Source", with: @admin_event.source
-    fill_in "Start at", with: @admin_event.start_at
-    fill_in "Status", with: @admin_event.status
-    fill_in "Title", with: @admin_event.title
-    fill_in "Venue", with: @admin_event.venue_id
+    check "All day" if @event.all_day
+    fill_in "Category", with: @event.category_id
+    fill_in "Description", with: @event.description
+    fill_in "End at", with: @event.end_at
+    fill_in "External url", with: @event.external_url
+    fill_in "Location override", with: @event.location_override
+    fill_in "Source", with: @event.source
+    fill_in "Start at", with: @event.start_at
+    fill_in "Status", with: @event.status
+    fill_in "Title", with: @event.title
+    fill_in "Venue", with: @event.venue_id
     click_on "Create Event"
 
     assert_text "Event was successfully created"
@@ -32,20 +32,20 @@ class Admin::EventsTest < ApplicationSystemTestCase
   end
 
   test "should update Event" do
-    visit admin_event_url(@admin_event)
+    visit admin_event_url(@event)
     click_on "Edit this event", match: :first
 
-    check "All day" if @admin_event.all_day
-    fill_in "Category", with: @admin_event.category_id
-    fill_in "Description", with: @admin_event.description
-    fill_in "End at", with: @admin_event.end_at.to_s
-    fill_in "External url", with: @admin_event.external_url
-    fill_in "Location override", with: @admin_event.location_override
-    fill_in "Source", with: @admin_event.source
-    fill_in "Start at", with: @admin_event.start_at.to_s
-    fill_in "Status", with: @admin_event.status
-    fill_in "Title", with: @admin_event.title
-    fill_in "Venue", with: @admin_event.venue_id
+    check "All day" if @event.all_day
+    fill_in "Category", with: @event.category_id
+    fill_in "Description", with: @event.description
+    fill_in "End at", with: @event.end_at.to_s
+    fill_in "External url", with: @event.external_url
+    fill_in "Location override", with: @event.location_override
+    fill_in "Source", with: @event.source
+    fill_in "Start at", with: @event.start_at.to_s
+    fill_in "Status", with: @event.status
+    fill_in "Title", with: @event.title
+    fill_in "Venue", with: @event.venue_id
     click_on "Update Event"
 
     assert_text "Event was successfully updated"
@@ -53,7 +53,7 @@ class Admin::EventsTest < ApplicationSystemTestCase
   end
 
   test "should destroy Event" do
-    visit admin_event_url(@admin_event)
+    visit admin_event_url(@event)
     click_on "Destroy this event", match: :first
 
     assert_text "Event was successfully destroyed"

@@ -1,9 +1,9 @@
 class Admin::TagsController < Admin::BaseController
-  before_action :set_admin_tag, only: %i[ show edit update destroy ]
+  before_action :set_tag, only: %i[ show edit update destroy ]
 
   # GET /admin/tags or /admin/tags.json
   def index
-    @admin_tags = Admin::Tag.all
+    @tags = Tag.all
   end
 
   # GET /admin/tags/1 or /admin/tags/1.json
@@ -12,7 +12,7 @@ class Admin::TagsController < Admin::BaseController
 
   # GET /admin/tags/new
   def new
-    @admin_tag = Admin::Tag.new
+    @tag = Tag.new
   end
 
   # GET /admin/tags/1/edit
@@ -21,15 +21,15 @@ class Admin::TagsController < Admin::BaseController
 
   # POST /admin/tags or /admin/tags.json
   def create
-    @admin_tag = Admin::Tag.new(admin_tag_params)
+    @tag = Tag.new(tag_params)
 
     respond_to do |format|
-      if @admin_tag.save
-        format.html { redirect_to @admin_tag, notice: "Tag was successfully created." }
-        format.json { render :show, status: :created, location: @admin_tag }
+      if @tag.save
+        format.html { redirect_to admin_tag_path(@tag), notice: "Tag was successfully created." }
+        format.json { render :show, status: :created, location: @tag }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @admin_tag.errors, status: :unprocessable_entity }
+        format.json { render json: @tag.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,19 +37,19 @@ class Admin::TagsController < Admin::BaseController
   # PATCH/PUT /admin/tags/1 or /admin/tags/1.json
   def update
     respond_to do |format|
-      if @admin_tag.update(admin_tag_params)
-        format.html { redirect_to @admin_tag, notice: "Tag was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @admin_tag }
+      if @tag.update(tag_params)
+        format.html { redirect_to admin_tag_path(@tag), notice: "Tag was successfully updated.", status: :see_other }
+        format.json { render :show, status: :ok, location: @tag }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @admin_tag.errors, status: :unprocessable_entity }
+        format.json { render json: @tag.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /admin/tags/1 or /admin/tags/1.json
   def destroy
-    @admin_tag.destroy!
+    @tag.destroy!
 
     respond_to do |format|
       format.html { redirect_to admin_tags_path, notice: "Tag was successfully destroyed.", status: :see_other }
@@ -59,12 +59,12 @@ class Admin::TagsController < Admin::BaseController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin_tag
-      @admin_tag = Admin::Tag.find(params.expect(:id))
+    def set_tag
+      @tag = Tag.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
-    def admin_tag_params
-      params.expect(admin_tag: [ :name, :slug, :is_active ])
+    def tag_params
+      params.expect(tag: [ :name, :slug, :is_active ])
     end
 end
