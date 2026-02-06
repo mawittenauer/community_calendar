@@ -4,11 +4,11 @@
 
 <h1>Events</h1>
 
-<div id="admin_events">
-  <% @admin_events.each do |admin_event| %>
-    <%= render admin_event %>
+<div id="events">
+  <% @events.each do |event| %>
+    <%= render event %>
     <p>
-      <%= link_to "Show this event", admin_event %>
+      <%= link_to "Show this event", admin_event_path(event) %>
     </p>
   <% end %>
 </div>

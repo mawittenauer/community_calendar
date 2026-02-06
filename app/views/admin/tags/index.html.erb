@@ -4,11 +4,11 @@
 
 <h1>Tags</h1>
 
-<div id="admin_tags">
-  <% @admin_tags.each do |admin_tag| %>
-    <%= render admin_tag %>
+<div id="tags">
+  <% @tags.each do |tag| %>
+    <%= render tag %>
     <p>
-      <%= link_to "Show this tag", admin_tag %>
+      <%= link_to "Show this tag", admin_tag_path(tag) %>
     </p>
   <% end %>
 </div>

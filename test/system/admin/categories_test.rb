@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class Admin::CategoriesTest < ApplicationSystemTestCase
   setup do
-    @admin_category = admin_categories(:one)
+    @category = categories(:one)
   end
 
   test "visiting the index" do
@@ -14,11 +14,11 @@ class Admin::CategoriesTest < ApplicationSystemTestCase
     visit admin_categories_url
     click_on "New category"
 
-    fill_in "Description", with: @admin_category.description
-    check "Is active" if @admin_category.is_active
-    fill_in "Name", with: @admin_category.name
-    fill_in "Slug", with: @admin_category.slug
-    fill_in "Sort order", with: @admin_category.sort_order
+    fill_in "Description", with: @category.description
+    check "Is active" if @category.is_active
+    fill_in "Name", with: @category.name
+    fill_in "Slug", with: @category.slug
+    fill_in "Sort order", with: @category.sort_order
     click_on "Create Category"
 
     assert_text "Category was successfully created"
@@ -26,14 +26,14 @@ class Admin::CategoriesTest < ApplicationSystemTestCase
   end
 
   test "should update Category" do
-    visit admin_category_url(@admin_category)
+    visit admin_category_url(@category)
     click_on "Edit this category", match: :first
 
-    fill_in "Description", with: @admin_category.description
-    check "Is active" if @admin_category.is_active
-    fill_in "Name", with: @admin_category.name
-    fill_in "Slug", with: @admin_category.slug
-    fill_in "Sort order", with: @admin_category.sort_order
+    fill_in "Description", with: @category.description
+    check "Is active" if @category.is_active
+    fill_in "Name", with: @category.name
+    fill_in "Slug", with: @category.slug
+    fill_in "Sort order", with: @category.sort_order
     click_on "Update Category"
 
     assert_text "Category was successfully updated"
@@ -41,7 +41,7 @@ class Admin::CategoriesTest < ApplicationSystemTestCase
   end
 
   test "should destroy Category" do
-    visit admin_category_url(@admin_category)
+    visit admin_category_url(@category)
     click_on "Destroy this category", match: :first
 
     assert_text "Category was successfully destroyed"

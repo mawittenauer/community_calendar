@@ -1,10 +1,10 @@
-<%= form_with(model: admin_tag) do |form| %>
-  <% if admin_tag.errors.any? %>
+<%= form_with(model: tag, url: tag.persisted? ? admin_tag_path(tag) : admin_tags_path) do |form| %>
+  <% if tag.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(admin_tag.errors.count, "error") %> prohibited this admin_tag from being saved:</h2>
+      <h2><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
 
       <ul>
-        <% admin_tag.errors.each do |error| %>
+        <% tag.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
