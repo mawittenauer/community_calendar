@@ -5,11 +5,7 @@ class Event < ApplicationRecord
   has_many :event_tags, dependent: :destroy
   has_many :tags, through: :event_tags
 
-  enum status: {
-    scheduled: 0,
-    canceled: 1,
-    postponed: 2
-  }
+  enum :status, [:scheduled, :canceled, :postponed]
 
   validates :title, presence: true
   validates :start_at, presence: true

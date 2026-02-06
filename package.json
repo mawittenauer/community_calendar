@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+  },
+  "dependencies": {
+    "@schedule-x/calendar": "^4.1.0",
+    "@schedule-x/events-service": "^4.1.0",
+    "@schedule-x/react": "^4.1.0",
+    "@schedule-x/theme-default": "^4.1.0",
+    "esbuild": "^0.27.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "temporal-polyfill": "^0.3.0"
+  }
+}
